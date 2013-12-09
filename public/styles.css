@@ -1,0 +1,64 @@
+
+      .thumbnail_height {
+        height:50px;
+        background-color: green;}
+
+      .cor_fundo {background-color: green;}
+
+      .fundo_compras {
+        background: url(fundo_compras.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+
+      .jumbotron {
+        color: white;
+
+        padding: 2%;
+        margin-bottom: 2%;
+        font-size: @jumbotron-font-size;
+        font-weight: 200;
+        line-height: (@line-height-base * 1.2);
+
+        background: url(http://www.fundacaoms.org.br/uploads/noticias/n_1712_1826735135_321829584.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+
+        h1,
+        .h1 {
+          line-height: 1;
+          color: @jumbotron-heading-color;
+        }
+        p {
+          line-height: 1.0;
+        }
+
+        .container & {
+          border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
+        }
+
+        .container {
+          max-width: 20%;
+        }
+
+        @media screen and (min-width: @screen-sm-min) {
+          padding-top:    (@jumbotron-padding * 1);
+          padding-bottom: (@jumbotron-padding * 1);
+
+          .container & {
+            padding-left:  (@jumbotron-padding * 2);
+            padding-right: (@jumbotron-padding * 2);
+          }
+
+          h1,
+          .h1 {
+            font-size: (@font-size-base * 4.5);
+          }
+        }
+      }
+
+

@@ -1,0 +1,61 @@
+<div class="page-header">
+  <h2> <%= @order.user.nome.capitalize %>, Confira sua compra:
+    <th><class="text-center"><button onclick="location.href = '<%= busca_url %>';" class="btn btn-warning pull-right" >Voltar as compras</button></th>
+</h2>
+</div>
+
+<html>
+<body>
+  <div class="row">
+    <div class=" col-md-12">
+      <table class="table table-hover">
+        <tr>
+          <th>Categoria</th>
+          <th>Imagem</th>
+          <th>Item</th>
+          <th>Quantidade</th>
+          <th>Alterar</th>
+          <th>Excluir</th>
+          <th>Valor</th>
+        </tr>
+        <% total = 0 %>
+        <%  @order.purchases.each do |purchase| %>
+            <tr>
+              <td><%= purchase.item.secao.secao %></td>
+              <td><%= image_tag(purchase.item.imagem, size: "80") %></td>
+              <td><%= purchase.item.item %></td>
+              <td>
+                  <%= form_tag(purchase_url(purchase.id), method: 'patch', class: 'form-horizontal') do %>
+                  <%= hidden_field_tag :order_id, @order.id , class: 'form-control' %>
+                  <%= hidden_field_tag :item_id, purchase.item.id, class: 'form-control' %>
+                  <%= number_field_tag :quantidade, purchase.quantidade, class: 'form-control' %>
+              </td>
+              <td>
+                  <%= submit_tag "Alterar", class: "btn btn-sm btn-warning centralizar " %>
+                  <% end %>
+              </td>
+              <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, purchase_url(purchase), method: 'delete', data: { confirm: "Deseja deletar esse item?" }, class: 'btn btn-danger' %>
+              </td>
+
+              <td>R$ <%= number_with_precision(purchase.item.preco * purchase.quantidade, :precision => 2)   %></td>
+           </tr>
+
+          <% total = total + purchase.item.preco * purchase.quantidade %>
+      <% end %>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="alert alert-success"> Total: </td>
+        <td class="alert alert-success"> R$ <%= number_with_precision(total , :precision => 2) %></td>
+      </tr>
+    </table>
+    <th><class="text-center"><button onclick="location.href = '<%= sair_url %>';" class="btn btn-success  pull-right" >Finalizar compra</button></th>
+  </div>
+
+  </body>
+</html>
+

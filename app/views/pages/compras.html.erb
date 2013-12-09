@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1>Escolha seus itens</h1>
+</div>
+
+<html>
+	<body>
+	  <div class="container ">
+	    <div class="row">
+	      <div class=" col-md-12">
+				<table class="table">
+          <tr>
+           <th ></th>
+           <th >Ordem</th>
+           <th >Data</th>
+           <th >Status</th>
+           <th >Vizualizar</th>
+           <% @i = 1 %>
+					</tr>
+					<% @closed_order.each do |ordem| %>
+						<tr>
+							<td ></td>
+
+							<td><%= @i %></td>
+	            <td><%= ordem.data %></td>
+	            <td><%= ordem.status %></td>
+	            <td><button onclick="location.href ='<%= vercompra_url(ordem.id) %>';" class="btn btn-warning ">
+	              </span>Visualizar</button>
+	            </td>
+							<% @i = @i + 1 %>
+						</tr>
+					<% end %>
+
+
+		</div>
+	</body>
+</html>

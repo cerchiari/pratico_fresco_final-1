@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Sub-secoes Cadastradas</h1>
+</div>
+
+<p><%= link_to 'Adicionar nova Subsecao', new_subsecao_url, class: 'btn btn-primary' %></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Secao</th>
+      <th>Subsecao</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subsecaos.each do |subsecao| %>
+      <tr>
+        <td><%= subsecao.secao.secao %></td>
+        <td><%= subsecao.subsecao %></td>
+        <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, subsecao_url(subsecao), class: 'btn btn-primary' %></td>
+        <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_subsecao_url(subsecao), class: 'btn btn-warning' %></td>
+        <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, subsecao_url(subsecao), method: 'delete', data: { confirm: "Do you really want to delete this subsecao?" }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

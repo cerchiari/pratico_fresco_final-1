@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Item #<%= @item.id %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Secao</dt>
+  <dd><%= @item.secao.secao %></dd>
+
+  <dt>Subsecao</dt>
+  <dd><%= @item.subsecao.subsecao %></dd>
+
+  <dt>Item</dt>
+  <dd><%= @item.item %></dd>
+
+  <dt>Marca</dt>
+  <dd><%= @item.marca %></dd>
+
+  <dt>Descricao</dt>
+  <dd><%= @item.descricao %></dd>
+
+  <dt>Preco</dt>
+  <dd><%= @item.preco %></dd>
+
+  <dt>Imagem</dt>
+  <dd><%= image_tag(@item.imagem, size: "80") %></dd>
+
+</dl>
+
+

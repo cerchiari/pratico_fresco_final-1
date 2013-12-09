@@ -1,0 +1,60 @@
+  <style>
+      .padrao{
+        size: 16pt;
+        width: 150px;
+        color: black;
+        }
+
+        .msg_erro{
+        color: red;
+        }
+  </style>
+<h2>Cadastro</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+
+  <p> Crie sua conta: </p>
+
+  <div><%= f.label :email, :class=>'padrao' %>
+  <%= f.email_field :email, :autofocus => true %>*</div>
+
+  <div><%= f.label :password, 'Senha', :class=>'padrao' %>
+  <%= f.password_field :password %>*</div>
+
+  <div><%= f.label :password_confirmation, 'Confirmar Senha',:class=>'padrao' %>
+  <%= f.password_field :password_confirmation %>*</div>
+
+  <p></p>
+  <p> Informe apenas mais alguns dados para começar: </p>
+
+  <div><%= f.label :nome, :class=>'padrao' %>
+  <%= f.text_field :nome %>*</div>
+
+  <div><%= f.label :sobrenome, :class=>'padrao' %>
+  <%= f.text_field :sobrenome %>*</div>
+
+  <div><%= f.label :telefone, :class=>'padrao' %>
+  <%= f.number_field :telefone %></div>
+
+  <div><%= f.label :endereco ,:class=>'padrao' %>
+  <%= f.text_field :endereco %></div>
+
+  <div><%= f.label :cidade, :class=>'padrao' %>
+  <%= f.text_field :cidade %>
+
+  <div><%= f.label :estado, :class=>'padrao' %>
+  <%= f.text_field :estado %></div>
+
+  <div><%= f.label :cep, :class=>'padrao' %>
+  <%= f.number_field :cep %></div>
+
+  <div class="msg_erro"><%= devise_error_messages! %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+

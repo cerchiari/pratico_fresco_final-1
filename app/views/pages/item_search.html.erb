@@ -1,0 +1,97 @@
+<div class="page-header">
+  <h1>Escolha seus itens</h1>
+</div>
+
+<html>
+<body>
+  <div class="container ">
+    <div class="row">
+      <div class="col-md-12">
+          <% if @searched_word[0] == nil
+                @erro = "nao encontrado"
+             end %>
+          <h4>Busca atual: "<%= @word %>" <%= @erro %><h4>
+
+          <table class="table">
+              <tr>
+                  <th>Item</th>
+                  <th></th>
+                  <th>Descricao</th>
+                  <th>Preco</th>
+                  <th>Quantidade</th>
+                  <th>Comprar</th>
+              </tr>
+
+              <% @searched_word.each do |item| %>
+
+                <tr>
+                  <td><%= image_tag(item.imagem, size: "60") %></td>
+                  <td><%= item.item %> (<%= item.marca %>)</td>
+                  <td><%= item.descricao %></td>
+                  <td><%= item.preco %></td>
+                  <td>
+                      <%@open_order = current_user.orders.find_by(status: "aberto")
+                      if @open_order != nil
+                        @purchase = @open_order.purchases.find_by(item_id: item.id)
+                      else
+                        @purchase = nil
+                      end%>
+                      <%= form_tag(purchases_url, method: 'post', class: 'form-horizontal') do %>
+                      <%= hidden_field_tag :item_id, item.id, class: 'form-control' %>
+                      <%= number_field_tag :quantidade,
+                      if @purchase != nil
+                         @purchase.quantidade
+                      end , class: 'form-control' %>
+                  </td>
+                  <td>
+                      <%= submit_tag "Adicionar", class: "btn btn-sm btn-warning centralizar" %>
+
+                  </td>
+              <% end %>
+              <% end %>
+          </table>
+
+          <th><button onclick="location.href = '<%= if @open_order != nil
+                                                      order_url(@open_order.id)
+                                                    else
+                                                      order_url("erro")
+                                                   end  %>';" class="btn btn-success pull-right">Meu carrinho
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+          </button></th>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Fazer nova busca:</h4>
+
+          <%= form_tag(item_search_url(:word), method: 'get') do %>
+            <div class="col-sm-6 col-md-4">
+                <div class="caption">
+                  <p class="text-center">Pesquisar por nome</p>
+                  <p> </p>
+                  <%= text_field_tag :word, nil, placeholder: "Digite aqui", class: "input-group btn-block btn-md" %>
+                  <p> </p>
+                  <p class="text-center"> <%= submit_tag "Pesquisar", class: "btn btn-warning btn-sm" %></p>
+                </div>
+              </div>
+          <% end %>
+
+         <%= form_tag(category_search_url(:secao), method: 'get') do %>
+            <div class="col-sm-6 col-md-4">
+              <div class="caption">
+                <p class="text-center">Outra categoria</p>
+                <%= select_tag :secao, options_from_collection_for_select(Secao.all, :id, :secao), :prompt => "Selecione secao", class: "btn btn-md btn-default dropdown-toggle btn-block" %>
+              <p></p>
+              <p class="text-center"> <%= submit_tag "Pesquisar", class: "btn btn-warning btn-sm" %></p>
+              </div>
+            </div>
+         <% end %>
+        </div>
+      </div>
+
+    </div>
+
+</body>
+</html>

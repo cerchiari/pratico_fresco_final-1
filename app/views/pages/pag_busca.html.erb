@@ -1,0 +1,60 @@
+<div class="page-header">
+  <h1>Inicie a sua compra
+      <th><button onclick="location.href = '<%= if @open_order != nil
+                                                      order_url(@open_order.id)
+                                                    else
+                                                      order_url("erro")
+                                                   end %>';" class="btn btn-success pull-right">Meu carrinho
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+      </button></th>
+  </h1>
+</div>
+
+<div class="row">
+  <%= form_tag(item_search_url(:word), method: 'get') do %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="http://groceries4u.fit.edu/productcart/pc/catalog/groceries.jpg" alt="...">
+        <div class="caption">
+          <h3 class="text-center">Pesquisar por nome</h3>
+          <p class="text-center">Nova compra: Pesquisar item por nome, marca ou caracteristica e adicionar</p>
+          <%= text_field_tag :word, nil, placeholder: "Digite aqui", class: "input-group btn-block btn-md" %>
+           <p> </p>
+           <p> </p>
+          <p class="text-center"> <%= submit_tag "Pesquisar", class: "btn btn-warning" %> </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_tag(category_search_url(:secao), method: 'get') do %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="http://www.healthyscience.net/wp-content/uploads/Grocery-Store-Produce.jpg" alt="...">
+        <div class="caption text-center">
+          <h3 class="text-center">Pesquisar por categoria</h3>
+          <p class="text-center">Nova compra: Pesquisar itens por categoria e adicionar</p>
+          <%= select_tag :secao, options_from_collection_for_select(Secao.all, :id, :secao), :prompt => "Selecione secao", class: "btn btn-md btn-default dropdown-toggle btn-block btn-md" %>
+          <p></p>
+          <p class="text-center"> <%= submit_tag "Pesquisar", class: "btn btn-warning" %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail" >
+      <img src="http://www.marketingforecast.com/wp-content/uploads/2013/03/GroceryBag.jpg" alt="..." >
+      <div class="caption">
+        <h3 class="text-center">Ultima Compra</h3>
+        <p class="text-center">Nova compra: ver e utilizar ultima compra em nova</p>
+        <h3 class="text-center"><button onclick="location.href = '/compras'" class="btn btn-warning" >Pesquisar</button></h3>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+

@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>Minhas compras</h1>
+</div>
+
+<html>
+  <body class="fundo_compras">
+
+     <h3>Total: R$ <%= number_with_precision(@total, precision: 2)%>  </h3>
+     <h5>Por favor retirar suas compras na loja localizada </h5>
+     <h5>na Rua Joao Cahoeira 292, a partir das </h5>
+     <h5>18:00h de <%= Date.today + 2 %></h5>
+     <h5>Obrigada! E uma otima semana!</h5>
+
+  </body>
+</html>

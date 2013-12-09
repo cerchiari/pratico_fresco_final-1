@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h2> Sua compra passada, <%= @order.user.nome.capitalize %>:
+    <th><class="text-center"><button onclick="location.href = '<%= busca_url %>';" class="btn btn-warning pull-right" >Buscar de outra forma</button></th>
+  </h2>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th>Imagem</th>
+      <th>Item</th>
+      <th>Quantidade</th>
+      <th>Adicionar ao carrinho</th>
+      <th>Preco</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <%  @order.purchases.each do |purchase| %>
+      <tr>
+      <%  @order.purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.item.secao.secao %></td>
+        <td><%= purchase.item.imagem  %></td>
+        <td><%= purchase.item.item %></td>
+        <td>
+      <%  end %>
+
+
+      </tr>
+
+    <% end %>
+
+  </tbody>
+</table>
+
